@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Chatbot Interface</title>
+    <link rel="stylesheet" type="text/css" href="../static/index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="name">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png">
+            <div class="name_under">
+                <h1>Chat Bot</h1>
+                <p>Questions?</p>
+            </div>
+        </div>
+        <div>
+            <div class="chatbox" id="chatbox"></div>
+            <hr>
+            <div class="lastline">
+                <input type="text" id="userInput" placeholder="Type your message..." />
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("userInput").value;
+            appendMessage(userInput, "user");
+
+            // AJAX request 
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/get_response", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var botResponse = xhr.responseText;
+                    appendMessage(botResponse, "bot");
+                }
+            };
+            xhr.send("user_input=" + encodeURIComponent(userInput));
+
+            document.getElementById("userInput").value = "";
+        }
+
+        function appendMessage(message, sender) {
+            var chatbox = document.getElementById("chatbox");
+            var messageElement = document.createElement("p");
+            messageElement.classList.add(sender);
+            var messageText = document.createTextNode(message);
+            messageElement.appendChild(messageText);
+            chatbox.appendChild(messageElement);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
