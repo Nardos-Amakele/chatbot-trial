@@ -5,6 +5,7 @@
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    box-shadow: 2px 2px 2px black;
     
 }
 .chatbox {
@@ -14,12 +15,12 @@
     margin-bottom: 10px;
 }
 .user {
-    background-color: rgb(255, 111, 0);
+    color: rgb(255, 111, 0);
     width: fit-content;
-    color: white;
     padding: 0.5rem;
     float: right;
     clear: both;
+    border: 1px solid rgb(255, 111, 0);
 }
 
 .bot {
@@ -51,8 +52,9 @@ input{
 button{
     border: none;
     background-color: rgb(255, 111, 0);
-    padding: 8px;
+    padding: 10px;
     margin-left: 1rem;
+    font-size: medium;
 }
 button:hover{
     opacity: 0.8;
@@ -61,4 +63,7 @@ button:hover{
 .lastline{
     margin-bottom: 10px;
     padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
 }

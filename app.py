@@ -30,11 +30,14 @@ def check_all_messages(message):
         highest_prob_list[bot_response] = message_probability(message, list_of_words, single_response, required_words)
 
     response('Hello!', ['hello', 'hi', 'sup', 'hey', 'heyo'], single_response=True)
-    response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
-    response('Thank You!', ['i', 'love', 'you'], required_words=['you', 'love'])
-    response('mn agebah', ['are', 'you', 'kal'], required_words=['are', 'kal'])
-    response(long.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
-    response('Planet!', ['who', 'were', 'you', 'with', 'ruth'], required_words=['you', 'with', 'ruth'])
+    response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how', 'you'])
+    response(long.R_ACCESSRATINGS, ['how','to','access','ratings','and','reviews'], required_words=['access','ratings','reviews'])
+    response(long.R_HEALTHCARE, ['what','is','centralized','healthcare','system'], required_words=['what','healthcare','system','centralized'])
+    response(long.R_RATEREVIEW,  ['can','a','patient','rate','and','review'], required_words=['how','rate','review'])
+    response(long.R_REGISTER,['how','do','I', 'register'], required_words=['how','register']) 
+    response(long.R_SECURE, ['is','my','medical','record','secure'], required_words=['secure','security'])   
+    response(long.R_SUPPORT, ['where','can','I','contact','you'], required_words=['contact','where'])   
+    response(long.R_VIEWRECORDS, ['where','to','see','view','my','medical','records'], required_words=['my','records'])
     best_match = max(highest_prob_list, key=highest_prob_list.get)
 
     return long.unknown() if highest_prob_list[best_match] < 1 else best_match
